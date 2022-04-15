@@ -22,7 +22,7 @@ void main() async {
       (request) => request.reply(200, {'message': 'Success!'}),
     );
     test('should return status code 200', () async {
-      final Response response = await _services.get(path);
+      final Response response = await _services.get(path, {});
       debugPrint(response.statusCode.toString());
       expect(response.statusCode, 200);
     });
