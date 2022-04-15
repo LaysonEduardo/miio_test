@@ -8,16 +8,18 @@ import 'base/http_services.dart';
 
 class DioServices implements HttpServices {
   Dio dio;
-  final String _baseUrl = 'https://jsonplaceholder.typicode.com/';
+  final String _baseUrl = 'https://dummyapi.io/data/v1';
 
   DioServices({required this.dio});
 
+  @override
   void init() {
     dio.options.baseUrl = _baseUrl;
+    dio.options.headers = {"app-id": "6259211cf1aef00d0cb22862"};
   }
 
   @override
-  Future get(String path) async {
+  Future get(String path, Map params) async {
     try {
       Response response = await dio.get(path);
       return response;

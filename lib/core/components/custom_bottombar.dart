@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:miio_test/app/components/buttons/custom_menu_button.dart';
+import 'package:miio_test/core/components/buttons/custom_menu_button.dart';
 
 class CustomBottomBar extends StatelessWidget {
   final int currenIndex;

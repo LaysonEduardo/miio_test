@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:miio_test/app/modules/configuration/models/users_model.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({Key? key}) : super(key: key);
+  final UsersModel? user;
+  const UserCard({this.user});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.only(top: 20),
       constraints: const BoxConstraints(
         maxHeight: 80,
         maxWidth: 450,

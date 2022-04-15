@@ -2,8 +2,10 @@ abstract class HomeEvent {}
 
 class FetchPosts extends HomeEvent {}
 
-class FilterPosts extends HomeEvent {
+class SearchPosts extends HomeEvent {
   final String string;
 
-  FilterPosts({required this.string});
+  SearchPosts({required this.string});
 }
+
+class IncrementPosts extends HomeEvent {}

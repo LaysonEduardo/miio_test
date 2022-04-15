@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:miio_test/app/modules/post/post_page.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class Post extends StatelessWidget {
   final int currentIndex;
@@ -51,11 +51,7 @@ class Post extends StatelessWidget {
                 title: const Text('Annie Rokae Art, purple, pink and blue paint.'),
                 subtitle: const Text('The formal relationships of ...'),
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => PostPage(),
-                    ),
-                  );
+                  Modular.to.pushNamed('/post/');
                 },
               ),
             ),

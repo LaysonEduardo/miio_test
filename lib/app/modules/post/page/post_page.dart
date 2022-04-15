@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:miio_test/app/components/buttons/custom_icon_button.dart';
-import 'package:miio_test/app/components/buttons/featured_button.dart';
-import 'package:miio_test/app/components/post_info.dart';
-import 'package:miio_test/app/components/user_card.dart';
+import 'package:miio_test/core/components/buttons/custom_icon_button.dart';
+import 'package:miio_test/core/components/buttons/featured_button.dart';
+import 'package:miio_test/core/components/comments_box.dart';
+import 'package:miio_test/core/components/post_header.dart';
+import 'package:miio_test/core/components/user_card.dart';
 import 'package:miio_test/core/config/app_icons.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
@@ -30,18 +31,22 @@ class _PostPageState extends State<PostPage> {
             backgroundColor: Colors.transparent,
             title: Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: Wrap(
-                direction: Axis.vertical,
+              child: Row(
                 children: [
-                  CustomIconButton(
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: AppColors.lightGrey,
-                    ),
-                    function: () => Modular.to.pop(),
-                  ),
-                  const SizedBox(
-                    height: 35,
+                  Wrap(
+                    direction: Axis.vertical,
+                    children: [
+                      CustomIconButton(
+                        icon: const Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: AppColors.lightGrey,
+                        ),
+                        function: () => Modular.to.pop(),
+                      ),
+                      const SizedBox(
+                        height: 35,
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -107,23 +112,10 @@ class _PostPageState extends State<PostPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: const [
-                    Text(
-                      'Annie Rokae Art, purple, pink and blue paint.',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      ),
-                    ),
-                    PostInfo(),
-                    Text(
-                      'The formal relationships of thick with thin lines, of broken with continuous, and of sinuous with jagged are forces of contrast and repetition in the design. Variations in the painted contours of images also provide a direct method of describing the volume, weight, spatial position, light, and textural characteristics of things.',
-                      style: TextStyle(
-                        fontSize: 14,
-                        height: 1.5,
-                        color: AppColors.grey,
-                      ),
-                    ),
+                    PostHeader(),
                     UserCard(),
+                    Divider(color: AppColors.lightGrey, height: 40),
+                    CommentsBox(),
                   ],
                 ),
               ),

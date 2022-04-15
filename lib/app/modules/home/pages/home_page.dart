@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:miio_test/app/components/buttons/custom_menu_button.dart';
-import 'package:miio_test/app/components/custom_bottombar.dart';
-import 'package:miio_test/app/components/custom_filter.dart';
-import 'package:miio_test/app/components/custom_search.dart';
-import 'package:miio_test/app/components/post_item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:miio_test/app/modules/home/bloc/home_bloc.dart';
+import 'package:miio_test/app/modules/home/event/home_event.dart';
+import 'package:miio_test/app/modules/home/state/home_state.dart';
+import 'package:miio_test/core/components/buttons/custom_menu_button.dart';
+import 'package:miio_test/core/components/custom_bottombar.dart';
+import 'package:miio_test/core/components/custom_filter.dart';
+import 'package:miio_test/core/components/custom_search.dart';
+import 'package:miio_test/core/components/post_item.dart';
 import 'package:miio_test/core/config/app_icons.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
@@ -14,25 +19,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final pageController = PageController(initialPage: 0);
-  final scrollController = ScrollController();
+  final bloc = Modular.get<HomeBloc>();
   int currentIndex = 0;
 
-  test() {}
-
-  // @override
-  // void initState() {
-  //   scrollController.addListener(() {
-  //     double maxScroll = scrollController.position.maxScrollExtent;
-
-  //     double currentScroll = scrollController.position.pixels;
-  //     double delta = MediaQuery.of(context).size.height * 0.25;
-  //     if (maxScroll == currentScroll) {
-  //       // whatever you determine here
-  //       print('teste');
-  //     }
-  //   });
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,28 +37,36 @@ class _HomePageState extends State<HomePage> {
             debugPrint(value);
           },
         ),
+        onChanged: (string) {
+          bloc.add(FetchPosts());
+        },
       ),
       body: PageView(
         controller: pageController,
-        physics: const NeverScrollableScrollPhysics(),
         children: [
-          RefreshIndicator(
-            displacement: 10,
-            color: AppColors.accent,
-            onRefresh: () async {
-              await Future.delayed(const Duration(seconds: 1));
-            },
-            child: ListView.builder(
-              controller: scrollController,
-              itemCount: 20,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Post(currentIndex: index);
-              },
-            ),
-          ),
-          Container(),
-          Container(),
+          BlocBuilder<HomeBloc, HomeState>(
+              bloc: bloc,
+              builder: (context, state) {
+                if (state is HomeBlankState) {
+                  return const Text('blank');
+                } else if (state is HomeSuccessState) {
+                  return RefreshIndicator(
+                    displacement: 10,
+                    color: AppColors.accent,
+                    onRefresh: () async {
+                      await Future.delayed(const Duration(seconds: 1));
+                    },
+                    child: ListView.builder(
+                      itemCount: 20,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Post(currentIndex: index);
+                      },
+                    ),
+                  );
+                }
+                return Container();
+              }),
           Container(),
         ],
       ),

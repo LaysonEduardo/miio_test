@@ -12,6 +12,10 @@ class HomeBlankState extends HomeState {
   HomeBlankState() : super(posts: []);
 }
 
+class HomeloadingState extends HomeState {
+  HomeloadingState() : super(posts: []);
+}
+
 class HomeSuccessState extends HomeState {
   HomeSuccessState({required List<PostModel> posts}) : super(posts: posts);
 }

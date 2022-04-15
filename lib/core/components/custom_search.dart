@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:miio_test/app/components/custom_filter.dart';
+import 'package:miio_test/core/components/custom_filter.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
 class CustomSearchBar extends StatelessWidget implements PreferredSizeWidget {
-  final double height;
   final CustomFilter filter;
+  final ValueChanged<String>? onChanged;
 
-  const CustomSearchBar({this.height = kToolbarHeight, required this.filter});
+  const CustomSearchBar({required this.filter, required this.onChanged});
 
   @override
   Size get preferredSize => const Size.fromHeight(135);
@@ -42,6 +42,7 @@ class CustomSearchBar extends StatelessWidget implements PreferredSizeWidget {
                   contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                   hintText: 'Search',
                 ),
+                onChanged: onChanged,
               ),
             ),
           ),

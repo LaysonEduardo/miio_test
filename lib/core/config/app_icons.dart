@@ -66,4 +66,21 @@ class AppIcons {
       fit: BoxFit.scaleDown,
     );
   }
+
+  //generate star
+  static star({Color? color}) {
+    return SvgPicture.asset(
+      'assets/icons/star.svg',
+      color: color,
+      fit: BoxFit.scaleDown,
+    );
+  }
+
+  static starSelected({Color? color}) {
+    return SvgPicture.asset(
+      'assets/icons/star_selected.svg',
+      color: color,
+      fit: BoxFit.scaleDown,
+    );
+  }
 }
