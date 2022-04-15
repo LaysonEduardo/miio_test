@@ -4,8 +4,6 @@ import 'package:miio_test/core/services/http/base/http_services.dart';
 import 'package:miio_test/core/services/http/dio_services.dart';
 
 class AppWidget extends StatefulWidget {
-  const AppWidget({Key? key}) : super(key: key);
-
   @override
   State<AppWidget> createState() => _AppWidgetState();
 }

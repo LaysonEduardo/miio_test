@@ -38,7 +38,6 @@ class CustomSearchBar extends StatelessWidget implements PreferredSizeWidget {
                     color: AppColors.grey,
                     fontSize: 14,
                   ),
-                  filled: true,
                   contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                   hintText: 'Search',
                 ),

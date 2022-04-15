@@ -1,10 +1,10 @@
-class CommentsModel {
+class CommentModel {
   int id;
   int postId;
   String name;
   String email;
   String body;
-  CommentsModel({
+  CommentModel({
     required this.id,
     required this.postId,
     required this.name,
@@ -12,8 +12,8 @@ class CommentsModel {
     required this.body,
   });
 
-  factory CommentsModel.fromJson(Map<String, dynamic> json) {
-    return CommentsModel(
+  factory CommentModel.fromJson(Map<String, dynamic> json) {
+    return CommentModel(
       id: json['id'],
       postId: json['postId'],
       name: json['name'],

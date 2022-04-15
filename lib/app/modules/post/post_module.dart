@@ -7,6 +7,6 @@ class PostModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: ((context, args) => PostPage())),
+        ChildRoute('/', child: ((context, args) => PostPage(id: args.params['id']))),
       ];
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
 class CustomIconButton extends StatelessWidget {
-  final function;
+  final Function function;
   final Widget icon;
   const CustomIconButton({required this.icon, required this.function});
 

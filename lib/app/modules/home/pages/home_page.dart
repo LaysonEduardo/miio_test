@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:miio_test/app/modules/home/bloc/home_bloc.dart';
-import 'package:miio_test/app/modules/home/event/home_event.dart';
+import 'package:miio_test/app/modules/home/events/home_events.dart';
+import 'package:miio_test/app/modules/home/pages/likes_page.dart';
+import 'package:miio_test/app/modules/home/pages/orders_page.dart';
+import 'package:miio_test/app/modules/home/pages/profile_page.dart';
 import 'package:miio_test/app/modules/home/state/home_state.dart';
 import 'package:miio_test/core/components/buttons/custom_menu_button.dart';
 import 'package:miio_test/core/components/custom_bottombar.dart';
@@ -18,12 +21,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final pageController = PageController(initialPage: 0);
-  final bloc = Modular.get<HomeBloc>();
+  final _pageController = PageController();
+  final _scrollController = ScrollController();
+  final _bloc = Modular.get<HomeBloc>();
   int currentIndex = 0;
 
   @override
   void initState() {
+    _bloc.add(FetchPosts());
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        _bloc.add(IncrementPosts());
+      }
+    });
     super.initState();
   }
 
@@ -38,36 +48,42 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         onChanged: (string) {
-          bloc.add(FetchPosts());
+          _bloc.add(SearchPosts(string: string));
         },
       ),
       body: PageView(
-        controller: pageController,
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           BlocBuilder<HomeBloc, HomeState>(
-              bloc: bloc,
+              bloc: _bloc,
               builder: (context, state) {
                 if (state is HomeBlankState) {
-                  return const Text('blank');
+                  return ListView.builder(itemBuilder: (context, index) {
+                    return PostShimmer();
+                  });
                 } else if (state is HomeSuccessState) {
                   return RefreshIndicator(
-                    displacement: 10,
-                    color: AppColors.accent,
+                    displacement: 5,
                     onRefresh: () async {
+                      _bloc.add(FetchPosts());
                       await Future.delayed(const Duration(seconds: 1));
                     },
                     child: ListView.builder(
-                      itemCount: 20,
+                      controller: _scrollController,
+                      itemCount: state.posts.length,
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return Post(currentIndex: index);
+                        return Post(post: state.posts[index]);
                       },
                     ),
                   );
                 }
                 return Container();
               }),
-          Container(),
+          LikesPage(),
+          OrdersPage(),
+          ProfilePage(),
         ],
       ),
       bottomNavigationBar: CustomBottomBar(
@@ -91,10 +107,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         onTap: (index) {
+          // _bloc.add(IncrementPosts());
           setState(() {
             currentIndex = index;
           });
-          pageController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          _pageController.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.ease);
         },
       ),
     );

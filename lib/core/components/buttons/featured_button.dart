@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
 class FeaturedButton extends StatelessWidget {
-  const FeaturedButton({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Row(

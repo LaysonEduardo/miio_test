@@ -1,11 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:miio_test/core/components/rating.dart';
-import 'package:miio_test/app/modules/configuration/models/comments_model.dart';
+import 'package:miio_test/app/modules/configuration/models/comment_model.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
 class CommentsBox extends StatelessWidget {
-  final List<CommentsModel>? comments;
-  const CommentsBox({this.comments});
+  final List<CommentModel> comments;
+  const CommentsBox({required this.comments});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CommentsBox extends StatelessWidget {
         SingleChildScrollView(
           child: ListView.builder(
               padding: const EdgeInsets.only(top: 10, bottom: 20),
-              itemCount: 10,
+              itemCount: comments.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
@@ -37,11 +39,33 @@ class CommentsBox extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
-                    children: const [
-                      Rating(rating: 1),
+                    children: [
+                      Rating(rating: Random().nextInt(5)),
                       ListTile(
-                        title: Text('teste'),
-                        subtitle: Text('teste'),
+                        title: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                            comments[index].body,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        subtitle: RichText(
+                          text: TextSpan(
+                            text: 'Review by ',
+                            style: const TextStyle(
+                              color: Colors.black,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: comments[index].email,
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),

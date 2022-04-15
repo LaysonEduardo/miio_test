@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:miio_test/app/modules/configuration/models/users_model.dart';
+import 'package:miio_test/app/modules/configuration/models/user_model.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
 class UserCard extends StatelessWidget {
-  final UsersModel? user;
-  const UserCard({this.user});
+  final UserModel user;
+  const UserCard({required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,14 @@ class UserCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: AppColors.underGrey,
       ),
-      child: const ListTile(
+      child: ListTile(
         leading: CircleAvatar(
           backgroundImage: NetworkImage(
-            'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+            user.image,
           ),
         ),
-        title: Text('Bonnie Lybaert'),
-        subtitle: Text('Betterpaint Real Deals'),
+        title: Text(user.name),
+        subtitle: Text(user.company),
       ),
     );
   }

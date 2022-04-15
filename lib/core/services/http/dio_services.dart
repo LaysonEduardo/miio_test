@@ -8,7 +8,7 @@ import 'base/http_services.dart';
 
 class DioServices implements HttpServices {
   Dio dio;
-  final String _baseUrl = 'https://dummyapi.io/data/v1';
+  final String _baseUrl = 'https://jsonplaceholder.typicode.com';
 
   DioServices({required this.dio});
 
@@ -19,9 +19,9 @@ class DioServices implements HttpServices {
   }
 
   @override
-  Future get(String path, Map params) async {
+  Future get(String path, Map<String, dynamic> params) async {
     try {
-      Response response = await dio.get(path);
+      Response response = await dio.get(path, queryParameters: params);
       return response;
     } on DioError catch (e) {
       return Future.error(e);

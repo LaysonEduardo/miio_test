@@ -3,8 +3,6 @@ import 'package:miio_test/core/config/app_icons.dart';
 import 'package:miio_test/core/config/app_palettes.dart';
 
 class PostInfo extends StatelessWidget {
-  const PostInfo({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Padding(

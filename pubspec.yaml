@@ -4,6 +4,7 @@ description: A new Flutter project.
 publish_to: 'none' 
 
 version: 1.0.0+1
+
 environment:
   sdk: ">=2.16.1 <3.0.0"
 
@@ -14,8 +15,7 @@ dependencies:
   #UI
   flutter_svg: ^1.0.3
   shimmer: ^2.0.0
-
-
+  fluttertoast: ^8.0.9
 
   ##Dependecy injection / Navigation
   flutter_modular: ^4.5.1+1
@@ -25,9 +25,6 @@ dependencies:
 
   #Network/API
   dio: ^4.0.6
-
-  #LocalStorage
-  hive_flutter: ^1.1.0
 
   
 
