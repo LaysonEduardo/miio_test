@@ -1,7 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 
 import 'base/http_services.dart';
@@ -15,7 +13,6 @@ class DioServices implements HttpServices {
   @override
   void init() {
     dio.options.baseUrl = _baseUrl;
-    dio.options.headers = {"app-id": "6259211cf1aef00d0cb22862"};
   }
 
   @override
@@ -25,19 +22,6 @@ class DioServices implements HttpServices {
       return response;
     } on DioError catch (e) {
       return Future.error(e);
-    }
-  }
-
-  @override
-  Future post(String path, Map params) async {
-    try {
-      final response = await dio.post(
-        path,
-        data: jsonEncode(params),
-      );
-      return response;
-    } on DioError {
-      print('error');
     }
   }
 }

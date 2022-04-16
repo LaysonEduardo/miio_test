@@ -37,7 +37,7 @@ Com base na History foi decidido utilizar os seguintes packages na aplicação:
 
 ### Regra de negócio e afins
 
-- [x] Criar models Post, Comment e User.
+- [x] Criar Models Post, Comment e User.
 - [x] Criar Services para popular esses models.
 - [x] Implementar e testar services com Dio.
 - [x] Criar integração com Modular.
