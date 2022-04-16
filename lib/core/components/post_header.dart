@@ -23,7 +23,6 @@ class PostHeader extends StatelessWidget {
           description,
           style: const TextStyle(
             fontSize: 14,
-            height: 1.5,
             color: AppColors.grey,
           ),
         ),

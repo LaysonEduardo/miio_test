@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:miio_test/app/modules/home/bloc/home_bloc.dart';
 import 'package:miio_test/app/modules/home/events/home_events.dart';
 import 'package:miio_test/app/modules/home/pages/likes_page.dart';
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
       appBar: CustomSearchBar(
         filter: CustomFilter(
           onTap: (value) {
-            debugPrint(value);
+            Fluttertoast.showToast(msg: 'Not implemented');
           },
         ),
         onChanged: (string) {

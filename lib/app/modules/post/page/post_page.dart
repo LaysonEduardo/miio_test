@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:miio_test/app/modules/post/bloc/post_bloc.dart';
 import 'package:miio_test/app/modules/post/events/post_events.dart';
 import 'package:miio_test/app/modules/post/state/post_state.dart';
@@ -87,14 +88,14 @@ class _PostPageState extends State<PostPage> {
                           children: [
                             CustomIconButton(
                               icon: AppIcons.heart(),
-                              function: () => Modular.to.pop(),
+                              function: () => Fluttertoast.showToast(msg: 'Not implemented'),
                             ),
                             CustomIconButton(
                               icon: const Icon(
                                 Icons.share_outlined,
                                 color: AppColors.lightGrey,
                               ),
-                              function: () => Modular.to.pop(),
+                              function: () => Fluttertoast.showToast(msg: 'Not implemented'),
                             ),
                           ],
                         ),
