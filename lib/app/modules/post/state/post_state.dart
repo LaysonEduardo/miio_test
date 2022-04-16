@@ -19,5 +19,10 @@ class PostBlankState extends PostState {
 }
 
 class PostSuccessState extends PostState {
-  PostSuccessState({required PostModel post, required UserModel user, required List<CommentModel> comments}) : super(post: post, user: user, comments: comments);
+  PostSuccessState({required PostModel post, required UserModel user, required List<CommentModel> comments})
+      : super(
+          post: post,
+          user: user,
+          comments: comments,
+        );
 }
