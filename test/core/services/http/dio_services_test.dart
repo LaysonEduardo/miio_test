@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,19 +21,6 @@ void main() async {
     );
     test('should return status code 200', () async {
       final Response response = await _services.get(path, {});
-      debugPrint(response.statusCode.toString());
-      expect(response.statusCode, 200);
-    });
-  });
-
-  group('POST Methods test', () {
-    _dioAdapter.onPost(
-      path,
-      (request) => request.reply(200, {'message': 'Success!'}),
-      data: json.encode({}),
-    );
-    test('should return status code 200', () async {
-      final Response response = await _services.post(path, {});
       debugPrint(response.statusCode.toString());
       expect(response.statusCode, 200);
     });
