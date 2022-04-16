@@ -35,24 +35,26 @@ Com base na History foi decidido utilizar os seguintes packages na aplicação:
 
 ## Tasks 
 
-### Regra de negócio
+### Regra de negócio e afins
 
 - [x] Criar models Post, Comment e User.
 - [x] Criar Services para popular esses models.
 - [x] Implementar e testar services com Dio.
+- [x] Criar integração com Modular.
+
 ### Tela 1
 
+- [x] Criar os arquivos e classes referente ao Bloc.
 - [x] Criar home page com lista de postagens.
 - [x] Criar scroll infinito.
 - [x] Criar post page com detalhes da postagem.
-- [x] Criar os arquivos e classes referente ao Bloc.
 - [x] Integrar os events e states do bloc com a Home.
 - [x] Criar busca de postagens.
 
-
 ### Tela 2
+
 - [x] Criar arquivos e classes referente ao Bloc.
-- [x] Criar eventos de Get do post, comentários e usuário que postou.
+- [x] Criar eventos de fetch do post, comentários e usuário que postou.
 - [x] Integrar os events e states do bloc com a tela.
 
 
