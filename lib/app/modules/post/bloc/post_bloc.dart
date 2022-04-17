@@ -1,18 +1,20 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:miio_test/app/modules/post/events/post_events.dart';
 import 'package:miio_test/app/modules/post/state/post_state.dart';
 
 import '../../configuration/services/posts_services.dart';
 
 class PostBloc extends Bloc<PostEvents, PostState> {
-  final PostServices post = Modular.get<PostServices>();
+  final PostServices postServices;
 
-  PostBloc() : super(PostBlankState()) {
+  PostBloc(this.postServices) : super(PostBlankState()) {
     on<FetchPost>(
-      (event, emit) async => emit(
-        PostSuccessState(post: await post.fetch(event.id), user: await post.fetchUser(), comments: await post.fetchComments()),
-      ),
+      (event, emit) async {
+        final post = await postServices.fetch(event.id);
+        final user = await postServices.fetchUser();
+        final comments = await postServices.fetchComments();
+        emit(PostSuccessState(post: post, user: user, comments: comments));
+      },
     );
   }
 }

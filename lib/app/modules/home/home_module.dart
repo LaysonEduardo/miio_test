@@ -10,8 +10,8 @@ class HomeModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.factory((i) => HomeBloc(i())),
-        Bind.factory((i) => PostBloc()),
-        Bind.factory((i) => PostServices()),
+        Bind.factory((i) => PostBloc(i())),
+        Bind.singleton((i) => PostServices(i())),
       ];
 
   @override

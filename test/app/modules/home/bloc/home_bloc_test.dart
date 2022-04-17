@@ -1,15 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:miio_test/app/modules/configuration/models/post_model.dart';
-import 'package:miio_test/app/modules/configuration/services/posts_services.dart';
 import 'package:miio_test/app/modules/home/bloc/home_bloc.dart';
 import 'package:miio_test/app/modules/home/events/home_events.dart';
 import 'package:miio_test/app/modules/home/state/home_state.dart';
 import 'package:mocktail/mocktail.dart';
 
-class PostServicesMock extends Mock implements PostServices {}
-
-class PostModelMock extends Mock implements PostModel {}
+import '../../../../mocks/mocks.dart';
 
 void main() {
   blocTest<HomeBloc, HomeState>(

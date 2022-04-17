@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:miio_test/app/modules/configuration/models/comment_model.dart';
 import 'package:miio_test/app/modules/configuration/models/post_model.dart';
 import 'package:miio_test/app/modules/configuration/models/user_model.dart';
@@ -8,7 +7,9 @@ import 'package:miio_test/core/services/http/dio_services.dart';
 class PostServices {
   List<PostModel> posts = [];
   late PostModel post;
-  final DioServices dio = Modular.get<DioServices>();
+  final DioServices dio;
+
+  PostServices(this.dio);
 
   Future<PostModel> fetch(int id) async {
     final response = await dio.get('/posts/$id', {});
