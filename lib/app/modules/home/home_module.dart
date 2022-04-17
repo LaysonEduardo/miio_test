@@ -9,7 +9,7 @@ import 'pages/home_page.dart';
 class HomeModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind.factory((i) => HomeBloc()),
+        Bind.factory((i) => HomeBloc(i())),
         Bind.factory((i) => PostBloc()),
         Bind.factory((i) => PostServices()),
       ];
