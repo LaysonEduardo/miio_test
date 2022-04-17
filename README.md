@@ -58,3 +58,5 @@ Com base na History foi decidido utilizar os seguintes packages na aplicação:
 - [x] Integrar os events e states do bloc com a tela.
 
 
+## Video
+https://www.youtube.com/embed/XWW4X6SP-6w
